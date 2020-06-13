@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+    <fragment
+        android:id="@+id/fragment_main"
+        android:name="com.example.handwriting.fragment.MainFragment"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_above="@+id/radiogroup"
+        android:layout_alignParentTop="true" />
+    <fragment
+        android:id="@+id/fragment_shequ"
+        android:name="com.example.handwriting.fragment.ShequFragment"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_above="@+id/radiogroup"
+        android:layout_alignParentTop="true" />
+    <fragment
+        android:id="@+id/fragment_my"
+        android:name="com.example.handwriting.fragment.MyFragment"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_above="@+id/radiogroup"
+        android:layout_alignParentTop="true" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:text="female" >
+
+        <RadioButton
+            android:id="@+id/btn_0"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_weight="1"
+            android:layout_alignParentLeft="true"
+            android:button="@null"
+            android:checked="true"
+            android:text="主页"
+            android:background="@drawable/btn_xz"
+            android:textColor="@android:color/black"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:textSize="17.0sp" />
+        <RadioButton
+            android:id="@+id/btn_2"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="社区"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_xz"
+            android:textColor="@android:color/black"
+            android:textSize="17.0sp" />
+        <RadioButton
+            android:id="@+id/btn_3"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            android:background="@drawable/btn_xz"
+            android:text="我"
+            android:textColor="@android:color/black"
+            android:textSize="17.0sp" />
+    </RadioGroup>
+</RelativeLayout>

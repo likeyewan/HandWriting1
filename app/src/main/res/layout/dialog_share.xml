@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/share_title"
+        android:textSize="30dp"
+        android:text="分享到社区"></TextView>
+    <EditText
+        android:id="@+id/edit_share"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_bg"
+        android:hint="写点什么吧！"
+        android:gravity="left"
+        android:inputType="textMultiLine"
+        android:maxLength="140"
+        android:maxLines="6"
+        android:minHeight="120dp" />
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/share_qx"
+            android:background="@drawable/btn_sty"
+            android:text="取消"></Button>
+        <Button
+            android:layout_marginLeft="30dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/share_qd"
+            android:background="@drawable/btn_qd"
+            android:textColor="@color/white"
+            android:text="确定"></Button>
+    </LinearLayout>
+
+</LinearLayout>

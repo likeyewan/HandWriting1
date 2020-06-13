@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.handwriting">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission  android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission  android:name="android.permission.RECORD_AUDIO"/>
+
+    <application
+        android:requestLegacyExternalStorage="true"
+        android:name="org.litepal.LitePalApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/apptubiao"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.ReplayActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
+        <intent-filter tools:ignore="AppLinkUrlError">
+            <action android:name="android.intent.action.VIEW"></action>
+            <category android:name="android.intent.category.DEFAULT"></category>
+            <data android:mimeType="text/plain"></data>
+        </intent-filter>
+        </activity>
+        <activity android:name=".activity.ChjActivity"/>
+        <activity android:name=".activity.PlanActivity"/>
+        <activity android:name=".activity.TieActivity"/>
+        <activity android:name=".activity.PhbActivity"/>
+        <activity android:name=".activity.WordListActivity"/>
+        <activity android:name=".activity.AllJiluActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.CuoTestActivity"></activity>
+        <activity android:name=".activity.MyTieActivity"/>
+        <activity android:name=".activity.PasswordChangeActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.SingleWordActivity" />
+        <activity android:name=".activity.StuActivity"></activity>
+        <activity android:name=".activity.CuoziActivity"/>
+        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.ReviewActivity"/>
+        <activity android:name=".activity.LunchActivity"
+            android:theme="@style/LunchTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.handwriting.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+
+</manifest>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.example.handwriting.other.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.example.handwriting.other.TitleLayout>
+    <LinearLayout
+        android:id="@+id/ll_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_usernaem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tv_name" />
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:hint="@string/et_name"
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                android:autofillHints=""  />
+            <TextView
+                android:id="@+id/tv_telphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/tv_phone" />
+            <LinearLayout
+                android:id="@+id/ll_middle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:orientation="horizontal">
+            <EditText
+                android:id="@+id/et_telphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:hint="@string/et_phone"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:autofillHints="" />
+                <Button
+                    android:id="@+id/bt_get_otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/btn_red"
+                    android:textColor="@color/white"
+                    android:text="@string/bt_get_code" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_otpCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tv_code" />
+
+            <EditText
+                android:id="@+id/et_otpCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:hint="@string/et_code"
+                android:inputType="number"
+                android:maxLength="6"
+                android:singleLine="true"
+                android:autofillHints="" />
+
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tv_password" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:hint="@string/et_password"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:selectAllOnFocus="true"
+                android:autofillHints=""  />
+
+            <EditText
+                android:id="@+id/et_password2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:hint="@string/et_password2"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:selectAllOnFocus="true"
+                android:autofillHints=""  />
+
+            <Button
+                android:id="@+id/bt_submit_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/btn_stu"
+                android:textColor="@color/white"
+                android:text="@string/bt_register" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

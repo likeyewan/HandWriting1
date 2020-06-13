@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:text="结果"></TextView>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:id="@+id/d_t"></TextView>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp">
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/d_once"
+        android:background="@drawable/btn_sty"
+        android:text="再写一次"></Button>
+
+    <Button
+        android:layout_marginLeft="40dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/d_w"
+        android:background="@drawable/btn_qd"
+        android:textColor="@color/white"
+    android:text="下一个"></Button>
+    </LinearLayout>
+
+</LinearLayout>

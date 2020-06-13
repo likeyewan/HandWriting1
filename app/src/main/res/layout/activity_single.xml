@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.example.handwriting.other.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.example.handwriting.other.TitleLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="请输入要练习的字："></TextView>
+
+    <EditText
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:maxEms="10"
+        android:maxLength="1"
+        android:id="@+id/single"
+        android:textSize="30dp">
+    </EditText>
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/sousuo"
+        android:id="@+id/sou">
+    </ImageView>
+</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="50dp"
+        android:id="@+id/sou_zi">
+    </TextView>
+    <com.example.handwriting.view.MyView
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:background="@mipmap/icon_draw_bg"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+       android:layout_gravity="center"
+        android:id="@+id/single_view"/>
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp">
+        <Button android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/sg_re"
+            android:background="@drawable/btn_sty"
+            android:text="重写"/>
+        <Button android:layout_width="100dp"
+            android:layout_marginLeft="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="完成"
+            android:background="@drawable/btn_sty"
+            android:id="@+id/sg_wc"/>
+    </LinearLayout>
+</LinearLayout>

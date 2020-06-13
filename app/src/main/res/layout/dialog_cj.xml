@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:text="成绩"></TextView>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="100dp"
+        android:textColor="@color/red"
+        android:id="@+id/d_t"></TextView>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_sty"
+            android:id="@+id/d_share"
+            android:text="分享"></Button>
+        <Button
+            android:layout_width="100dp"
+            android:layout_marginLeft="25dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/d_w"
+            android:background="@drawable/btn_qd"
+            android:textColor="@color/white"
+            android:text="收到"></Button>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tie_pic">
+        </ImageView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="我"
+            android:id="@+id/pl_name"
+            />
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="fsagbffg"
+            android:id="@+id/pl_time"></TextView>
+    </LinearLayout>
+        <TextView
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pl_content"
+            android:text="无法放入"
+            />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="评论"
+                android:textSize="25dp">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/pl_num"
+                android:textSize="25dp"
+                android:text="5"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="|">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="点赞"></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/zan_num"
+                android:textSize="25dp"
+                android:text="11"></TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+    <!-- 第二部分，评论区-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        >
+        <!-- 评论区主内容区域-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_line"
+            android:paddingTop="20dp">
+            <ListView
+                android:id="@+id/list_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                ></ListView>
+        </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+    <!--第三部分，评论区和输入区-->
+    <LinearLayout
+android:id="@+id/comment_vg_lyt"
+android:layout_width="match_parent"
+android:layout_height="50dp"
+android:layout_gravity="bottom"
+android:background="@drawable/solid_line"
+android:orientation="horizontal"
+android:paddingLeft="20dp"
+android:paddingRight="20dp"
+android:paddingTop="5dp"
+        android:gravity="center"
+android:visibility="visible">
+
+    <com.example.handwriting.other.MyImgBtnH
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/ping_lun">
+    </com.example.handwriting.other.MyImgBtnH>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"></TextView>
+    <com.example.handwriting.other.MyImgBtnH
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/zan">
+    </com.example.handwriting.other.MyImgBtnH>
+</LinearLayout>
+    <!--第四部分，评论输入区-->
+    <com.example.handwriting.other.NoTouchLinearLayout
+android:id="@+id/edit_vg_lyt"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#77030303"
+android:gravity="bottom"
+android:orientation="vertical"
+android:visibility="gone">
+<LinearLayout
+    android:id="@+id/ll_comment_test"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F1F1F1"
+    android:orientation="horizontal"
+    android:paddingBottom="20dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp">
+    <!-- 输入框 -->
+    <EditText
+        android:id="@+id/edit_comment"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_bg"
+        android:gravity="left"
+        android:inputType="textMultiLine"
+        android:maxLength="140"
+        android:maxLines="6"
+        android:minHeight="120dp" />
+    <Button
+        android:id="@+id/but_comment_send"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button_comment"
+        android:text="发表"
+        android:textColor="#ffffff" />
+</LinearLayout>
+</com.example.handwriting.other.NoTouchLinearLayout>
+</FrameLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+
+    <dbname value="HSK" />
+
+    <version value="12" />
+
+    <list>
+        <mapping class="com.example.handwriting.db.Replay"/>
+        <mapping class="com.example.handwriting.db.WWord"/>
+        <mapping class="com.example.handwriting.bean.Word" />
+        <mapping class="com.example.handwriting.db.Plan"/>
+        <mapping class="com.example.handwriting.db.Learn"/>
+        <mapping class="com.example.handwriting.db.Userdb"/>
+        <mapping class="com.example.handwriting.db.HanZi"/>
+    </list>
+
+</litepal>
