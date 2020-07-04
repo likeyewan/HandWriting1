@@ -1,5 +1,6 @@
 package com.example.handwriting.other;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -23,6 +24,7 @@ public class NoTouchLinearLayout extends LinearLayout {
     public void setOnResizeListener(OnResizeListener l) {
         mListener = l;
     }
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return true;

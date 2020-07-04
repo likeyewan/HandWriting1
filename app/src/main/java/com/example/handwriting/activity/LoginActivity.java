@@ -61,6 +61,8 @@ public class LoginActivity extends Activity {
                 }else if (password.equals("")) {
                     Toast.makeText(LoginActivity.this,getString(R.string.login_password),Toast.LENGTH_SHORT).show();
                 }else {
+                    //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                   // startActivity(intent);
                     tast = new myAsyncTast();//创建AsyncTask
                     tast.execute();//启动AsyncTask
                 }
@@ -148,6 +150,8 @@ public class LoginActivity extends Activity {
         et_password.setText(sp.getString("PASSWORD", ""));
         account = et_account.getText().toString();
         password =et_password.getText().toString();
+        //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        //startActivity(intent);
         tast = new myAsyncTast();//创建AsyncTask
         tast.execute();//启动AsyncTask
     }

@@ -57,11 +57,9 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(WordAdapter.ViewHolder holder, int position){
-        AssetManager assetManager= context.getAssets();
         Word word =mWList.get(position);
         holder.name.setText(word.getName());
         holder.w_id.setText(""+(position+1)+".");
-       // holder.name.setTypeface(Typeface.createFromAsset(assetManager, "font/kaiti.ttf"));
     }
     @Override
     public int getItemCount(){

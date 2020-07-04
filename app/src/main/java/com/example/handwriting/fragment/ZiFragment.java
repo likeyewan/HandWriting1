@@ -1,6 +1,6 @@
 package com.example.handwriting.fragment;
 
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.handwriting.R;
 import com.example.handwriting.adapter.PhbAdapter;
@@ -38,12 +40,33 @@ public class ZiFragment extends Fragment {
     GetAsyncTask getAsyncTask;
     RecyclerView recyclerView;
     ProgressBar progressBar;
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_zi, container, false);
+        final View v = inflater.inflate(R.layout.fragment_zi, container, false);
         progressBar=(ProgressBar)v.findViewById(R.id.pro);
         recyclerView = (RecyclerView) v.findViewById(R.id.list_zi);
+        swipeRefreshLayout=(SwipeRefreshLayout)v.findViewById(R.id.swip);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                phbList.clear();
+                                getAsyncTask=new GetAsyncTask();
+                                getAsyncTask.execute();
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
         LinearLayoutManager layoutManager = new LinearLayoutManager(v.getContext());
         recyclerView.setLayoutManager(layoutManager);
         PhbAdapter adapter = new PhbAdapter(phbList, 3, v.getContext());
@@ -78,7 +101,6 @@ public class ZiFragment extends Fragment {
                     String s = response.body().string();
                     Gson gson1=new Gson();
                     phbList = gson1.fromJson(s, new TypeToken<List<Phb>>(){}.getType());
-                    //Log.d("dsa","phbs="+phbs);
                 }
             });
             try {
@@ -98,11 +120,11 @@ public class ZiFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
                 PhbAdapter adapter = new PhbAdapter(phbList, 3, getContext());
                 recyclerView.setAdapter(adapter);
+                swipeRefreshLayout.setRefreshing(false);
             }
         }
         @Override
         protected void onProgressUpdate(Integer... values) {
-
         }
     }
 

@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Fragment;
 
 import com.example.handwriting.R;
 import com.example.handwriting.adapter.WordAdapter;

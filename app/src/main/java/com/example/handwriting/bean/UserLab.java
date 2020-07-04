@@ -28,6 +28,15 @@ public static UserLab get(Context context, String account, String password){
         if (sUserLab==null || !flag){
         sUserLab = new UserLab(context,account,password);
         }
+       /* User user=new User();
+        user.setSex("男");
+        user.setRole(1);
+        user.setPhoneNum("15546");
+        user.setNickname("sdd");
+        user.setPassword("dd");
+        user.setSign("sdf");
+        user.setPhoto("dsf");
+        sUserLab.setUser(user);*/
         return sUserLab;
         }
 private UserLab(final Context context, String account, String password){
@@ -54,23 +63,19 @@ public void onResponse(Call call, Response response) throws IOException {
         mUser = new Gson().fromJson(s, type);
         Log.d(TAG, "onResponse: " + s);
         if (mUser != null){
-
         flag = true;
         }
-        }
-        });
+}});
         try {
         Thread.sleep(2000);
         } catch (InterruptedException e) {
         e.printStackTrace();
         }
-
         }
-
 public User getUser(){
         return mUser;
         }
 public void setUser(User user){
         mUser = user;
         }
-        }
+}

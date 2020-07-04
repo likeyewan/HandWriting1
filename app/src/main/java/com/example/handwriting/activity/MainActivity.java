@@ -37,10 +37,14 @@ import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.bumptech.glide.Glide;
 import com.example.handwriting.bean.Pic;
 import com.example.handwriting.db.Replay;
+import com.example.handwriting.handwritig_recognition.HttpUtil;
 import com.example.handwriting.other.DestroyActivityUtil;
 import com.example.handwriting.other.GetData;
+import com.example.handwriting.other.HttpUtils;
+import com.example.handwriting.other.Utility;
 import com.example.handwriting.view.ItemView;
 import com.example.handwriting.other.MyImgBtn;
 import com.example.handwriting.R;
@@ -114,7 +118,7 @@ public class MainActivity extends Activity
     private ItemView mPass,mTie,mAbout;
     private RadioGroup  radioGroup;
     private RadioButton radioButton;
-    private Button practise,tc,review;
+    private Button tc,review;
     private long firstTime = 0;
     private void showTypeDialog() {
         //显示对话框
@@ -243,6 +247,8 @@ public class MainActivity extends Activity
             user.setPhoto(imagePath);
             String fileName = UUID.randomUUID().toString();
             savePhoto(fileName);
+            UploadFile uploadFile=new UploadFile();
+            uploadFile.fileUpload(imagePath,""+fileName);
             Userdb user=new Userdb();
             user.setPhoto(fileName);
             user.updateAll("phonenum=?",mUser.getPhoneNum());
@@ -455,16 +461,11 @@ public class MainActivity extends Activity
         }else mVip.setRightDesc("超级会员");
         mSex.setRightDesc(user.getSex());
         mSignName.setRightDesc(user.getSign());
-        OkHttpClient client = new OkHttpClient();
-        final Request request = new Request
-                .Builder()
-                .get()
-                .url("http://192.168.137.1:8080/HSKHandWrting/pic/"+mUser.getPhoto()+".jpg")
-                .build();
-        Call call = client.newCall(request);
-        call.enqueue(new Callback() {
+        String picUrl="http://192.168.137.1:8080/HSKHandWrting/pic/"+mUser.getPhoto()+".jpg";
+        HttpUtils.sendRequest(picUrl, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -562,82 +563,51 @@ public class MainActivity extends Activity
                         mSex.setRightDesc(sex[selectedSexIndex]);
                         Toast.makeText(getApplication(), sex[selectedSexIndex], Toast.LENGTH_SHORT).show();
                         String url = getString(R.string.s_url_change_sex);
-                        OkHttpClient okHttpClient = new OkHttpClient();
                         RequestBody requestBody = new FormBody.Builder()
                                 .add("SEX", sex[selectedSexIndex])
                                 .add("PHONE", user.getPhoneNum())
                                 .add("FLAG",1+"")
                                 .build();
-                        Request request = new Request.Builder()
-                                .url(url)
-                                .post(requestBody)
-                                .build();
-                        okHttpClient.newCall(request).enqueue(new Callback() {
+                        HttpUtils.postRequest(url, requestBody, new Callback() {
                             @Override
                             public void onFailure(Call call, IOException e) {
-                                Log.d(TAG, "onFailure: " + e.getMessage());
+                                e.printStackTrace();
                             }
                             @Override
                             public void onResponse(Call call, Response response) throws IOException {
                                 String s = response.body().string();
-                                JSONArray jsonArray = null;
-                                try {
-                                    String state = "";
-                                    jsonArray = new JSONArray(s);
-                                    for (int i = 0; i < jsonArray.length(); i++) {
-                                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                        state = jsonObject.getString("STATE");
-                                        if(!state.equals("0")){
-                                            Userdb user=new Userdb();
-                                            user.setSex(sex[selectedSexIndex]);
-                                            user.updateAll("phonenum=?",mUser.getPhoneNum());
-                                        }
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                String re=Utility.handleResponse(s);
+                                if(!re.equals("0")){
+                                    Userdb user=new Userdb();
+                                    user.setSex(sex[selectedSexIndex]);
+                                    user.updateAll("phonenum=?",mUser.getPhoneNum());
                                 }
                             }
                         });
                     }
-                })
-                .create();
+                }).create();
         alertDialog.show();
     }
     private void savePhoto(final String filename){
         String url = getString(R.string.s_url_change_sex);
-        OkHttpClient okHttpClient = new OkHttpClient();
         RequestBody requestBody = new FormBody.Builder()
                 .add("SEX", filename)
                 .add("PHONE", user.getPhoneNum())
                 .add("FLAG",4+"")
                 .build();
-        Request request = new Request.Builder()
-                .url(url)
-                .post(requestBody)
-                .build();
-        okHttpClient.newCall(request).enqueue(new Callback() {
+        HttpUtils.postRequest(url, requestBody, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.d(TAG, "onFailure: " + e.getMessage());
+                e.printStackTrace();
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                String s = response.body().string();
-                JSONArray jsonArray = null;
-                try {
-                    String state = "";
-                    jsonArray = new JSONArray(s);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        state = jsonObject.getString("STATE");
-                        if(!state.equals("0")){
-                            Userdb user=new Userdb();
-                            user.setPhoto(filename);
-                            user.updateAll("phonenum=?",mUser.getPhoneNum());
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                String s=response.body().string();
+                String re=Utility.handleResponse(s);
+                if(!re.equals("0")){
+                    Userdb user=new Userdb();
+                    user.setPhoto(filename);
+                    user.updateAll("phonenum=?",mUser.getPhoneNum());
                 }
             }
         });
@@ -664,40 +634,24 @@ public class MainActivity extends Activity
                 final String sign=et.getText().toString();
                 mSignName.setRightDesc(sign);
                 String url = getString(R.string.s_url_change_sex);
-                OkHttpClient okHttpClient = new OkHttpClient();
-                RequestBody requestBody = new FormBody.Builder()
+                final RequestBody requestBody = new FormBody.Builder()
                         .add("SEX", sign)
                         .add("PHONE", user.getPhoneNum())
                         .add("FLAG",3+"")
                         .build();
-                Request request = new Request.Builder()
-                        .url(url)
-                        .post(requestBody)
-                        .build();
-                okHttpClient.newCall(request).enqueue(new Callback() {
+                HttpUtils.postRequest(url, requestBody, new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        Log.d(TAG, "onFailure: " + e.getMessage());
+                        e.printStackTrace();
                     }
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        String s = response.body().string();
-                        JSONArray jsonArray = null;
-                        try {
-                            String state = "";
-                            jsonArray = new JSONArray(s);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                state = jsonObject.getString("STATE");
-                                if(!state.equals("0")){
-                                    Userdb user=new Userdb();
-                                    user.setSign(sign);
-                                    user.updateAll("phonenum=?",mUser.getPhoneNum());
-                                }
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        String s=response.body().string();
+                        String re=Utility.handleResponse(s);
+                        if(!re.equals("0")){
+                            Userdb user=new Userdb();
+                            user.setSign(sign);
+                            user.updateAll("phonenum=?",mUser.getPhoneNum());
                         }
                     }
                 });
@@ -1167,17 +1121,12 @@ public class MainActivity extends Activity
     }
     private void n(final String n) {
         String url="http://192.168.137.1:8080/HSKHandWrting/pic/"+n+".jpg";
-        OkHttpClient client = new OkHttpClient();
-        final Request request = new Request
-                .Builder()
-                .get()
-                .url(url)
-                .build();
-        Call call = client.newCall(request);
-        call.enqueue(new Callback() {
+        HttpUtils.sendRequest(url, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
             }
+
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 InputStream inputStream = response.body().byteStream();

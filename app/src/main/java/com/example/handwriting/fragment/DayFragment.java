@@ -1,6 +1,6 @@
 package com.example.handwriting.fragment;
 
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
